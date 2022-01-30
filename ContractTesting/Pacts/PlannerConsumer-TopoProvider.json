@@ -1,0 +1,60 @@
+{
+  "consumer": {
+    "name": "PlannerConsumer"
+  },
+  "interactions": [
+    {
+      "description": "get city by id",
+      "providerStates": [
+        {
+          "name": "with city Madrid exists"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/topographicdetails/Madrid"
+      },
+      "response": {
+        "body": {
+          "id": "Madrid",
+          "landscape": "Madrid"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.landscape": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.2.10"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "TopoProvider"
+  }
+}

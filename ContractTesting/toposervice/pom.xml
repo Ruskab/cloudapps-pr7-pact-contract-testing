@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>contract-testing</artifactId>
+        <groupId>ikab.dev</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>toposervice</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <javafaker.version>1.0.2</javafaker.version>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>au.com.dius.pact.provider</groupId>
+            <artifactId>junit5spring</artifactId>
+            <version>${pact.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>snakeyaml</artifactId>
+                    <groupId>org.yaml</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+    </dependencies>
+
+</project>
