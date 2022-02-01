@@ -7,7 +7,7 @@
       "description": "get city by id",
       "providerStates": [
         {
-          "name": "with city Madrid exists"
+          "name": "with existent city"
         }
       ],
       "request": {
@@ -16,22 +16,13 @@
       },
       "response": {
         "body": {
-          "id": "Madrid",
-          "landscape": "Madrid"
+          "landscape": "Flat"
         },
         "headers": {
           "Content-Type": "application/json"
         },
         "matchingRules": {
           "body": {
-            "$.id": {
-              "combine": "AND",
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ]
-            },
             "$.landscape": {
               "combine": "AND",
               "matchers": [

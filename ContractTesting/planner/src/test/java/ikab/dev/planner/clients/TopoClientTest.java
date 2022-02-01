@@ -23,34 +23,31 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @PactTestFor(providerName  = "TopoProvider")
 class TopoClientTest {
 
-    public static final String CITY_MADRID = "Madrid";
-    private static final String EXPECTED_CITY = "Madrid";
+    public static final String ANY_CITY = "Madrid";
+    private static final String ANY_LANDSCAPE = "Flat";
 
     @Pact(consumer = "PlannerConsumer")
     public RequestResponsePact getCity(PactDslWithProvider builder) {
         return builder
-                .given("with city %s exists".formatted(CITY_MADRID))
+                .given("with existent city")
                 .uponReceiving("get city by id")
-                .path("/api/topographicdetails/%s".formatted(CITY_MADRID))
+                .path("/api/topographicdetails/%s".formatted(ANY_CITY))
                 .method("GET")
                 .willRespondWith()
                 .status(200)
                 .headers(Map.of("Content-Type", "application/json"))
-                .body(newJsonBody(object -> {
-                    object.stringType("id", CITY_MADRID);
-                    object.stringType("landscape", EXPECTED_CITY);
-                }).build())
+                .body(newJsonBody(object -> object.stringType("landscape", ANY_LANDSCAPE)).build())
                 .toPact();
     }
 
     @Test
     @PactTestFor(pactMethod = "getCity", port = "8080")
-    void getStudent_whenStudentExist(MockServer mockServer) throws ExecutionException, InterruptedException {
+    void getCity_when_city_exists(MockServer mockServer) throws ExecutionException, InterruptedException {
         var topoClient = getMockedTopoService(mockServer);
 
-        var response = topoClient.getLandscape(CITY_MADRID);
+        var response = topoClient.getLandscape(ANY_CITY);
 
-        assertThat(response.get(), CoreMatchers.is(EXPECTED_CITY));
+        assertThat(response.get(), CoreMatchers.is(ANY_LANDSCAPE));
     }
 
     private TopoClient getMockedTopoService(MockServer mockServer) {

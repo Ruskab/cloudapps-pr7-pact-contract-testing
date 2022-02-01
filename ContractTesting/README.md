@@ -2,6 +2,7 @@
 
 ## Caracteristicas
 
+* Consumer : como lo unico que parece necesitar el Consumer del TopoService, en el Pacto lo unico que se mira es que devuelve una propiedad landscape de tipo string, obviando la propiedad id por que el consumer no lo usa para nada.
 * Consumer : uso de MockServer en el puerto 8080 para generar el archivo Pact
 * Consumer : en la clase TopoClient.java se ha cambiado la isntanciación de RestTemplate a Inyección para poder usar MockServer
 * Consumer : al ejecutar ``mvn verify`` copia automaticamente el achivo `target/pacts/PlannerConsumer-TopoProvider.json` a la carpeta ``Pacts/``
@@ -18,6 +19,7 @@
 
 * Alternativa 
   * He dejado un script en node llamado `verify_conract_tests.js` que hace todo lo anterior automaticamente
+  * Hay que situarse en la raiz del proyecto `ContractTesting` y ejecutar el script
   ````shell
    node .\verify_conract_tests.js
   ````

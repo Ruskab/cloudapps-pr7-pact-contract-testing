@@ -33,6 +33,8 @@ class TopoControllerContractTest {
 
     @Mock
     private TopoService topoService;
+    private final String ANY_CITY = "Madrid";
+    private final String ANY_LANDSCAPE = "Flat";
 
     @BeforeEach
     void setUp(PactVerificationContext context) {
@@ -47,8 +49,8 @@ class TopoControllerContractTest {
         context.verifyInteraction();
     }
 
-    @State("with city Madrid exists")
-    public void withCityExists() {
-        when(topoService.getCity("Madrid")).thenReturn(new City("1", "Madrid"));
+    @State("with existent city")
+    public void withExistentCity() {
+        when(topoService.getCity(ANY_CITY)).thenReturn(new City("1", ANY_LANDSCAPE));
     }
 }
